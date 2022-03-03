@@ -1,0 +1,45 @@
+.button {
+  fill: var(--text);
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.select {
+  display: none;
+  appearance: none;
+  font-size: 1.25rem;
+  padding: 0.25em;
+  color: var(--black);
+  background-color: var(--white);
+  outline: 0.175em solid var(--black);
+  border: none;
+  font-weight: 700;
+  padding-right: 1.25em;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.wrapper::after {
+  --size: 0.375em;
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  transform: translateY(-50%);
+  right: 5%;
+  height: 100%;
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid var(--black);
+}
+
+@media only screen and (min-width: 40em) {
+  .button {
+    display: none;
+  }
+
+  .select {
+    display: flex;
+  }
+}

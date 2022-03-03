@@ -1,6 +1,5 @@
+import AnimationSelect from '../AnimationsSelect';
 import DarkmodeToggle from '../DarkmodeToggle';
-import Earth from '../svg/Earth';
-import Sun from '../svg/Sun';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -10,7 +9,9 @@ const Navbar = () => {
       <li className={styles.link}>Projects</li>
       <li className={styles.link}>About</li>
       <li>Lang</li>
-      <li>Animations</li>
+      <li>
+        <AnimationSelect />
+      </li>
       <li>
         <DarkmodeToggle />
       </li>
