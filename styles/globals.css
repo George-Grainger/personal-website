@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +13,27 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  /* Your default theme */
+  --white: hsl(0, 0%, 98%);
+  --black: hsl(231, 23%, 12%);
+  --sky-blue: hsl(212, 97%, 85%);
+  --yellow-light: hsl(52, 98%, 78%);
+  --yellow-darker: hsl(52, 98%, 48%);
+
+  --background: var(--sky-blue);
+  --text: var(--black);
+}
+
+:root.dark {
+  --background: var(--black);
+  --text: var(--white);
+}
+
+body {
+  transition: all ease 300ms;
+  background-color: var(--background);
+  color: var(--foreground);
 }

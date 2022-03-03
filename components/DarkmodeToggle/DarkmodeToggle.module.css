@@ -1,0 +1,139 @@
+.stars *,
+.moon,
+.plane,
+.cloud,
+.fillWhite {
+  fill: var(--white);
+}
+
+.moonMask,
+.cloud > path {
+  transition: transform var(--duration) var(--transition);
+  will-change: transform;
+}
+
+.toggle {
+  --is-light: 1;
+  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration: 500ms;
+
+  fill: hsl(212, 97%, 68%);
+  height: 3rem;
+  aspect-ratio: 37 / 19;
+  cursor: pointer;
+}
+
+.outline {
+  stroke: var(--white);
+  stroke-width: 0.625rem;
+  transition: fill var(--duration) var(--transition),
+    stroke var(--duration) var(--transition);
+  will-change: fill, stroke;
+}
+
+.stars {
+  transition: opacity var(--duration) var(--transition);
+  will-change: opacity;
+}
+
+.stars * {
+  opacity: calc(1 - var(--is-light));
+  transition: opacity 100ms var(--transition), transform 100ms ease 400ms;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.sun {
+  opacity: var(--is-light);
+  fill: var(--yellow-darker);
+  transition: transform var(--duration) var(--transition),
+    opacity var(--duration) var(--transition);
+  will-change: transform, opacity;
+}
+
+.moon {
+  opacity: calc(1 - var(--is-light));
+  transition: transform var(--duration) var(--transition),
+    opacity var(--duration) var(--transition);
+  will-change: transform, opacity;
+}
+
+.cloud > path:first-child {
+  transition-delay: 100ms;
+}
+
+.plane {
+  stroke: var(--white);
+  animation: plane 2s 1 0.3s;
+  opacity: 0;
+}
+
+.moonMask {
+  fill: hsl(230, 23%, 46%);
+}
+
+:global(.dark) .toggle {
+  --is-light: 0;
+  fill: hsl(223, 48%, 25%);
+}
+
+:global(.dark) .outline {
+  stroke: hsl(230, 23%, 56%);
+}
+
+:global(.dark) .stars * {
+  transition: transform 500ms var(--transition);
+}
+
+:global(.dark) .stars *:first-child {
+  transform: translateX(-2.5rem);
+}
+
+:global(.dark) .stars *:last-child {
+  transform: translateX(2.5rem);
+}
+
+:global(.dark) .sun {
+  transform: translate(-8.75rem, -1.25rem);
+}
+
+:global(.dark) .moon {
+  transform: translateX(-5.625rem);
+}
+
+:global(.dark) .cloud > path {
+  opacity: 0;
+  animation: cloudToDark 500ms;
+  transform: translateY(6.25rem);
+}
+
+:global(.dark) .plane {
+  animation: unset;
+}
+
+:global(.dark) .moonMask {
+  transform: translateX(-8.75rem);
+}
+
+@keyframes plane {
+  0% {
+    opacity: 1;
+    transform: translateX(-25rem);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudToDark {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(2.5rem);
+  }
+}
