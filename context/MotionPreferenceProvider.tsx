@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useContext, useState } from 'react';
 import { MotionPreferenceProviderProps, UseMotionPreferenceProps } from './MotionPreferenceTypes';
 
-const MEDIA = '(prefers-reduced-motion: reduced)';
+const MEDIA = '(prefers-reduced-motion: reduce)';
 const isServer = typeof window === 'undefined';
 const MotionPreferenceContext = createContext<UseMotionPreferenceProps>({
   setMotionPreference: (_) => {}
@@ -29,6 +29,7 @@ export const MotionPreferenceProvider: React.FC<MotionPreferenceProviderProps> =
 
     const d = document.documentElement;
     if (attribute === 'class') {
+      d.classList.remove(...['no-preference', 'reduce']);
       d.classList.add(resolved);
     } else {
       d.setAttribute(attribute, resolved);
@@ -87,6 +88,10 @@ export const MotionPreferenceProvider: React.FC<MotionPreferenceProviderProps> =
     return () => window.removeEventListener('storage', handleStorage);
   }, [setMotionPreference]);
 
+  useEffect(() => {
+    applyMotionPreference(motionPreference);
+  }, [motionPreference]);
+
   return (
     <MotionPreferenceContext.Provider
       value={{
@@ -115,6 +120,6 @@ const getMotionPreference = (key: string, fallback?: string) => {
 const getSystemMotionPreference = (e?: MediaQueryList | MediaQueryListEvent) => {
   if (!e) e = window.matchMedia(MEDIA);
   const prefersAnimation = e.matches;
-  const systemAnimation = prefersAnimation ? 'reduced' : 'no-preference';
+  const systemAnimation = prefersAnimation ? 'reduce' : 'no-preference';
   return systemAnimation;
 };

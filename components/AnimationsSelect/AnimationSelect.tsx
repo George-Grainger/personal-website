@@ -29,7 +29,7 @@ const AnimationSelect = () => {
           onChange={(e) => setMotionPreference(e.target.value)}
         >
           <option value="no-preference">Animations On</option>
-          <option value="reduced">Animations Off</option>
+          <option value="reduce">Animations Off</option>
         </select>
       </div>
     </>
