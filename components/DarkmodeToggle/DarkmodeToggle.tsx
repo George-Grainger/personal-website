@@ -32,13 +32,7 @@ const DarkmodeToggle = () => {
           d="M271 161C307.451 161 337 131.451 337 95C337 58.5492 307.451 29 271 29C234.549 29 205 58.5492 205 95C205 131.451 234.549 161 271 161Z"
         />
         <g>
-          <circle
-            className={styles.moon}
-            mask="url(#moonMask)"
-            cx="190"
-            cy="95"
-            r="66"
-          />
+          <circle className={styles.moon} mask="url(#moonMask)" cx="190" cy="95" r="66" />
         </g>
         <g className={styles.cloud}>
           <path
@@ -57,26 +51,11 @@ const DarkmodeToggle = () => {
       </g>
       <defs>
         <mask id="moonMask">
-          <rect
-            className={styles.fillWhite}
-            x="30"
-            y="20"
-            width="320"
-            height="165"
-            rx="86"
-            ry="86"
-          />
+          <rect className={styles.fillWhite} x="30" y="20" width="320" height="165" rx="86" ry="86" />
           <circle className={styles.moonMask} cx="360" cy="85" r="66" />
         </mask>
         <clipPath id="clip0">
-          <rect
-            className={styles.fillWhite}
-            x="10"
-            y="10"
-            width="350"
-            height="170"
-            rx="85"
-          />
+          <rect className={styles.fillWhite} x="10" y="10" width="350" height="170" rx="85" />
         </clipPath>
       </defs>
     </svg>

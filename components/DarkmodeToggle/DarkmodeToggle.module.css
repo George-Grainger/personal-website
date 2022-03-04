@@ -26,8 +26,7 @@
 .outline {
   stroke: var(--white);
   stroke-width: 0.625rem;
-  transition: fill var(--duration) var(--transition),
-    stroke var(--duration) var(--transition);
+  transition: fill var(--duration) var(--transition), stroke var(--duration) var(--transition);
   will-change: fill, stroke;
 }
 
@@ -46,15 +45,13 @@
 .sun {
   opacity: var(--is-light);
   fill: var(--yellow-darker);
-  transition: transform var(--duration) var(--transition),
-    opacity var(--duration) var(--transition);
+  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
   will-change: transform, opacity;
 }
 
 .moon {
   opacity: calc(1 - var(--is-light));
-  transition: transform var(--duration) var(--transition),
-    opacity var(--duration) var(--transition);
+  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
   will-change: transform, opacity;
 }
 
