@@ -1,37 +1,89 @@
 .button {
   fill: var(--text);
-  height: 2.5rem;
-  width: 2.5rem;
+  stroke: var(--text);
+  height: 3rem;
+  width: 3rem;
 }
 
-.select {
-  display: none;
-  appearance: none;
-  font-size: 1.25rem;
-  padding: 0.25em;
-  color: var(--black);
-  background-color: var(--white);
-  outline: 0.175em solid var(--black);
-  border: none;
-  font-weight: 700;
-  padding-right: 1.25em;
+.darkline {
+  stroke: hsl(0, 0%, 73%);
 }
 
 .wrapper {
+  --delay: 80ms;
+  display: none;
   position: relative;
 }
 
-.wrapper::after {
+.wrapper.show:focus-within .label {
+  transition-delay: 0ms;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.wrapper.show:focus-within .label:last-child {
+  transition-delay: var(--delay);
+}
+
+.select {
+  display: flex;
+  margin: 0;
+  border: none;
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  z-index: -1;
+}
+
+.select input[type='radio'] {
+  visibility: hidden;
+}
+
+.title,
+.label {
+  width: 17.5ch;
+  padding: 0.175em 1.5em 0.175em 0.5em;
+  font-weight: 700;
+  color: var(--text);
+  background-color: var(--inverse);
+  text-transform: capitalize;
+}
+
+.title:hover,
+.label:hover {
+  background-color: var(--inverse-hover);
+}
+
+.label {
+  border-inline: 0.125em solid currentColor;
+  transform: translateY(-25%);
+  opacity: 0;
+  transition: opacity var(--duration) var(--transition) var(--delay), transform var(--duration) var(--transition) var(--delay);
+}
+
+.label:last-child {
+  border-bottom: 0.125em solid currentColor;
+  transition-delay: 0ms;
+  z-index: -1;
+}
+
+.title {
+  border: 0.125em solid currentColor;
+  position: relative;
+  text-align: left;
+}
+
+.title::after {
   --size: 0.375em;
   content: '';
   position: absolute;
-  pointer-events: none;
-  transform: translateY(-50%);
-  right: 5%;
-  height: 100%;
+  inset: 50% 0.5em auto auto;
+  transform: translateY(-25%);
   border-left: var(--size) solid transparent;
   border-right: var(--size) solid transparent;
-  border-top: var(--size) solid var(--black);
+  border-top: var(--size) solid currentColor;
 }
 
 @media only screen and (min-width: 40em) {
@@ -39,7 +91,7 @@
     display: none;
   }
 
-  .select {
-    display: flex;
+  .wrapper {
+    display: inherit;
   }
 }

@@ -50,7 +50,6 @@ export const MotionPreferenceProvider: React.FC<MotionPreferenceProviderProps> =
   const handleMediaQuery = useCallback(
     (e: MediaQueryListEvent | MediaQueryList) => {
       const resolved = getSystemMotionPreference(e);
-      console.log(resolved);
 
       setResolvedMotionPreference(resolved);
 

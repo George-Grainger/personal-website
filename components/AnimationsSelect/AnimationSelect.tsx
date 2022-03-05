@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useMotionPreference } from '../../context/MotionPreferenceProvider';
+import cn from 'classnames';
 import styles from './AnimationSelect.module.css';
 
 const AnimationSelect = () => {
   const { setMotionPreference, resolvedMotionPreference } = useMotionPreference();
 
   const [mounted, setMounted] = useState(false);
+  const [optionsVisible, setOptionsVisible] = useState(false);
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
@@ -14,23 +16,41 @@ const AnimationSelect = () => {
 
   return (
     <>
-      <label className="sr-only" htmlFor="animations-select">
-        Show animations?
-      </label>
-      <svg aria-label="Show animations?" className={styles.button} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 0C2.93913 0 1.92172 0.421427 1.17157 1.17157C0.421427 1.92172 0 2.93913 0 4V24H4V4H24V0H4ZM12 8C10.9391 8 9.92172 8.42143 9.17157 9.17157C8.42143 9.92172 8 10.9391 8 12V32H12V12H32V8H12ZM36 20V36H20V20H36ZM36 16H20C18.9391 16 17.9217 16.4214 17.1716 17.1716C16.4214 17.9217 16 18.9391 16 20V36C16 37.0609 16.4214 38.0783 17.1716 38.8284C17.9217 39.5786 18.9391 40 20 40H36C37.0609 40 38.0783 39.5786 38.8284 38.8284C39.5786 38.0783 40 37.0609 40 36V20C40 18.9391 39.5786 17.9217 38.8284 17.1716C38.0783 16.4214 37.0609 16 36 16ZM24 22V34L32 28L24 22Z" />
+      <svg
+        aria-label="Show animations?"
+        aria-role="button"
+        className={styles.button}
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={() => setMotionPreference(resolvedMotionPreference === 'no-preference' ? 'reduced' : 'no-preference')}
+      >
+        <path d="M8 4C6.93913 4 5.92172 4.42143 5.17157 5.17157C4.42143 5.92172 4 6.93913 4 8V28H8V8H28V4H8ZM16 12C14.9391 12 13.9217 12.4214 13.1716 13.1716C12.4214 13.9217 12 14.9391 12 16V36H16V16H36V12H16ZM40 24V40H24V24H40ZM40 20H24C22.9391 20 21.9217 20.4214 21.1716 21.1716C20.4214 21.9217 20 22.9391 20 24V40C20 41.0609 20.4214 42.0783 21.1716 42.8284C21.9217 43.5786 22.9391 44 24 44H40C41.0609 44 42.0783 43.5786 42.8284 42.8284C43.5786 42.0783 44 41.0609 44 40V24C44 22.9391 43.5786 21.9217 42.8284 21.1716C42.0783 20.4214 41.0609 20 40 20ZM28 26V38L36 32L28 26Z" />
+        <path className={resolvedMotionPreference === 'no-preference' ? 'hidden' : ''} d="M2 1.5L47.5 47" stroke-width="5" />
       </svg>
-      <div className={styles.wrapper}>
-        <select
+      <div
+        className={cn(styles.wrapper, optionsVisible ? styles.show : '')}
+        onBlur={(e) => !e.currentTarget.matches(':focus-within') && setOptionsVisible(false)}
+      >
+        <button arial-hidden="true" className={styles.title} onClick={() => setOptionsVisible(!optionsVisible)}>
+          {resolvedMotionPreference === 'no-preference' ? 'Animations on' : 'Animations off'}
+        </button>
+        <fieldset
           className={styles.select}
-          id="animations-select"
-          name="animations-select"
-          defaultValue={resolvedMotionPreference}
-          onChange={(e) => setMotionPreference(e.target.value)}
+          onClick={() => setOptionsVisible(false)}
+          onChange={(e) => setMotionPreference((e.target as HTMLInputElement).value)}
         >
-          <option value="no-preference">Animations On</option>
-          <option value="reduce">Animations Off</option>
-        </select>
+          <legend className="sr-only">Show animations?</legend>
+          <input className="sr-only" type="radio" id="animations-on" name="animation-preference" value="no-preference" />
+          <label className={styles.label} tabIndex={0} htmlFor="animations-on">
+            Animations on
+          </label>
+          <input className="sr-only" type="radio" id="animations-off" name="animation-preference" value="reduce" />
+          <label className={styles.label} tabIndex={0} htmlFor="animations-off">
+            Animations off
+          </label>
+        </fieldset>
       </div>
     </>
   );
