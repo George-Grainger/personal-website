@@ -5,7 +5,7 @@ import styles from './CustomSelect.module.css';
 interface Props {
   className: string;
   legend: string;
-  items: { id: string; value: string; displayValue?: string; displaySVG?: React.ReactNode }[];
+  items: { id: string; value: string; displayValue: string; displaySVG: React.ReactNode }[];
   defaultValue: string | undefined;
   updateFunction: (a: string) => void;
 }

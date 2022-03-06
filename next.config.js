@@ -5,10 +5,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true
+  swcMinify: true,
+  i18n: {
+    locales: ['en-UK', 'fr'],
+    defaultLocale: 'en-UK'
+  }
   // experimental: {
   //   outputStandalone: true
-  // }
+  // },
 };
 
-module.exports = withBundleAnalyzer({ nextConfig });
+module.exports = withBundleAnalyzer(nextConfig);

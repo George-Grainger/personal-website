@@ -4,7 +4,6 @@
   border-radius: 0.5em;
   border: 0.125em solid currentColor;
   width: 17.5ch;
-  font-weight: 700;
   color: var(--text);
   background-color: var(--inverse);
   text-transform: capitalize;

@@ -27,6 +27,8 @@ a {
   --sky-blue: hsl(212, 97%, 85%);
   --yellow-light: hsl(52, 98%, 78%);
   --yellow-darker: hsl(52, 98%, 48%);
+  --blue: hsl(213, 100%, 35%);
+  --red: hsl(349, 100%, 43%);
   --purple: hsl(259, 79%, 50%);
 
   --background: var(--sky-blue);
