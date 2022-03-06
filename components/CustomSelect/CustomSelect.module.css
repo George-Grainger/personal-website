@@ -1,36 +1,9 @@
-.wrapper {
-  --delay: 80ms;
-  --curve: 0.625em;
-  position: relative;
-}
-
-.show .label {
-  transform: translateX(0);
-  opacity: 1;
-  transition-delay: calc(var(--delay) * var(--index)); /* Incrementaly delay starting at top item */
-}
-
-.select {
-  display: flex;
-  margin: 0;
-  border: none;
-  position: absolute;
-  flex-direction: column;
-  top: 100%;
-  left: 0;
-  padding: 0;
-  z-index: -1;
-  transform: translateY(0.25em);
-}
-
-.select input[type='radio'] {
-  visibility: hidden;
-}
-
 .title,
-.label {
+.select {
+  line-height: 1;
+  border-radius: 0.5em;
+  border: 0.125em solid currentColor;
   width: 17.5ch;
-  padding: 0.25em 1.5em 0.25em 0.5em;
   font-weight: 700;
   color: var(--text);
   background-color: var(--inverse);
@@ -42,29 +15,37 @@
   background-color: var(--inverse-hover);
 }
 
-.label {
-  border-block: none;
-  border-inline: 0.125em solid currentColor;
-  transform: translateY(-25%);
+.wrapper {
+  --duration: 300ms;
+  position: relative;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  overflow: hidden;
+  top: 100%;
+  padding: 0;
+  z-index: -1;
   opacity: 0;
+  transform: translateY(-25%);
   transition: opacity var(--duration) var(--transition), transform var(--duration) var(--transition);
-  transition-delay: calc(var(--delay) * (var(--max-index) - var(--index))); /* Incremental delay starting from the bottom most item */
-  z-index: calc(-1 * var(--index));
 }
 
-.label:first-of-type {
-  border-top: 0.125em solid currentColor;
-  border-radius: var(--curve) var(--curve) 0 0;
+.select input[type='radio'] {
+  visibility: hidden;
 }
 
-.label:last-of-type {
-  border-bottom: 0.125em solid currentColor;
-  border-radius: 0 0 var(--curve) var(--curve);
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.375em;
 }
 
 .title {
-  border-radius: 10px;
-  border: 0.125em solid currentColor;
+  padding: 0.375em 1.5em 0.375em 0.375em;
   position: relative;
   text-align: left;
 }
@@ -89,6 +70,11 @@
 .title::after {
   inset: 60% 0.5em auto auto;
   border-top: var(--size) solid currentColor;
+}
+
+.show .select {
+  transform: translateY(5%);
+  opacity: 1;
 }
 
 .show .title::before {
