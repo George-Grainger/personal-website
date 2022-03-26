@@ -4,16 +4,16 @@ import cn from 'classnames';
 import styles from './Select.module.css';
 
 interface SelectProps {
-  className: string;
+  className?: string;
   legend: string;
-  defaultValue: string | undefined;
+  defaultValue?: string;
   children: React.ReactNode;
   onChange: (a: string) => void;
 }
 
-const Select = ({ className, legend, defaultValue, onChange, children }: SelectProps) => {
+const Select = ({ className = '', legend, defaultValue, onChange, children }: SelectProps) => {
   const getNewDisplayValue = (newValue: string | undefined) => {
-    return (React.Children.toArray(children) as JSX.Element[]).filter((c) => c.props.value == newValue)[0].props.displayValue;
+    return (React.Children.toArray(children) as JSX.Element[]).filter((c) => c.props.value == newValue)[0]?.props?.displayValue || 'Choose an option';
   };
 
   const handleChange = (e: FormEvent<HTMLFieldSetElement>) => {
@@ -30,7 +30,7 @@ const Select = ({ className, legend, defaultValue, onChange, children }: SelectP
       className={cn(className, styles.wrapper, optionsVisible ? styles.show : '')}
       onBlur={(e) => !e.currentTarget.matches(':focus-within') && setOptionsVisible(false)}
     >
-      <button arial-hidden="true" className={styles.title} onClick={() => setOptionsVisible(!optionsVisible)}>
+      <button aria-hidden="true" className={styles.title} onClick={() => setOptionsVisible(!optionsVisible)}>
         {displayValue}
       </button>
       <fieldset defaultValue={defaultValue} className={styles.select} onClick={() => setOptionsVisible(false)} onChange={handleChange}>

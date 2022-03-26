@@ -5,17 +5,18 @@ interface OptionProps {
   name: string;
   value: string;
   displayValue: React.ReactNode;
-  optionSVG?: React.ReactNode;
+  secondaryValue?: React.ReactNode;
+  role?: string;
 }
 
-const Option = ({ id, name, value, displayValue, optionSVG }: OptionProps) => {
+const Option = ({ id, name, value, displayValue, secondaryValue, role }: OptionProps) => {
   return (
     <>
       <label className={styles.label} tabIndex={0} htmlFor={id}>
         {displayValue}
-        {optionSVG}
+        {secondaryValue}
       </label>
-      <input className="sr-only" type="radio" id={id} name={name} value={value} />
+      <input className="sr-only" type="radio" id={id} name={name} value={value} role={role} />
     </>
   );
 };

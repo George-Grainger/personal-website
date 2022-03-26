@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMotionPreference } from '../../context/MotionPreferenceProvider';
-import CustomSelect from '../Select';
+import Select from '../Select';
 import AnimationsSVG from '../svg/Animations';
 import cn from 'classnames';
 import styles from './AnimationSelect.module.css';
@@ -22,22 +22,22 @@ const AnimationSelect = () => {
         className={cn(styles.button, styles.svg)}
         onClick={() => setMotionPreference(resolvedMotionPreference === 'no-preference' ? 'reduce' : 'no-preference')}
       />
-      <CustomSelect className={styles.select} legend="Show animations?" defaultValue={resolvedMotionPreference} onChange={setMotionPreference}>
-        <CustomSelect.Option
+      <Select className={styles.select} legend="Show animations?" defaultValue={resolvedMotionPreference} onChange={setMotionPreference}>
+        <Select.Option
           id="animations-on"
           name="animation-preference"
           value="no-preference"
-          displayValue="Animations on"
-          optionSVG={<AnimationsSVG className={styles.svg} />}
+          displayValue="Animations On"
+          secondaryValue={<AnimationsSVG className={styles.svg} />}
         />
-        <CustomSelect.Option
-          id="animations-off"
+        <Select.Option
+          id="animations-less"
           name="animation-preference"
           value="reduce"
-          displayValue="Animations off"
-          optionSVG={<AnimationsSVG className={cn(styles.svg, styles.strikethrough)} />}
+          displayValue="Animations Less"
+          secondaryValue={<AnimationsSVG className={cn(styles.svg, styles.strikethrough)} />}
         />
-      </CustomSelect>
+      </Select>
     </>
   );
 };

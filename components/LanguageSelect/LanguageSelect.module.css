@@ -1,0 +1,12 @@
+.select {
+  width: 7ch;
+}
+
+.select > button {
+  padding-top: 0.167em;
+  padding-bottom: 0.167em;
+}
+
+.svg {
+  height: 2rem;
+}

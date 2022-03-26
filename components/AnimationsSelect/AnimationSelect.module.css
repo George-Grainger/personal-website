@@ -1,10 +1,12 @@
 .select {
   display: none;
+  width: 19ch;
 }
 
 .svg {
   height: 1.5em;
   fill: var(--text);
+  flex: 1 1 auto;
 }
 
 :global(.reduce) .button,

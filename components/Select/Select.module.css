@@ -3,10 +3,9 @@
   line-height: 1;
   border-radius: 0.5em;
   border: 0.125em solid currentColor;
-  width: 17.5ch;
+  width: 100%;
   color: var(--text);
   background-color: var(--inverse);
-  text-transform: capitalize;
 }
 
 .title:hover,
@@ -16,6 +15,7 @@
 
 .wrapper {
   --duration: 300ms;
+  width: 100%;
   position: relative;
 }
 
@@ -39,7 +39,7 @@
 .label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.4em;
   padding: 0.375em;
 }
 
@@ -54,20 +54,20 @@
   --size: 0.375em;
   content: '';
   position: absolute;
-  transform: translateY(-25%);
+  inset: 50% 0.5em auto auto;
   border-left: var(--size) solid transparent;
   border-right: var(--size) solid transparent;
   transition: opacity var(--duration) var(--transition);
 }
 
 .title::before {
-  inset: 30% 0.5em auto auto;
+  transform: translateY(-120%);
   border-bottom: var(--size) solid currentColor;
   opacity: 0.35;
 }
 
 .title::after {
-  inset: 60% 0.5em auto auto;
+  transform: translateY(20%);
   border-top: var(--size) solid currentColor;
 }
 
