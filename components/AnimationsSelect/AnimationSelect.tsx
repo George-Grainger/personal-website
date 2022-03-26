@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMotionPreference } from '../../context/MotionPreferenceProvider';
-import CustomSelect from '../CustomSelect';
+import CustomSelect from '../Select';
 import AnimationsSVG from '../svg/Animations';
 import cn from 'classnames';
 import styles from './AnimationSelect.module.css';
