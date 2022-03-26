@@ -6,20 +6,6 @@ import cn from 'classnames';
 import styles from './AnimationSelect.module.css';
 
 const AnimationSelect = () => {
-  const options = [
-    {
-      id: 'animations-on',
-      value: 'no-preference',
-      displayValue: 'Animations on',
-      displaySVG: <AnimationsSVG className={styles.svg} />
-    },
-    {
-      id: 'animations-off',
-      value: 'reduce',
-      displayValue: 'Animations off',
-      displaySVG: <AnimationsSVG className={cn(styles.svg, styles.strikethrough)} />
-    }
-  ];
   const [mounted, setMounted] = useState(false);
   const { resolvedMotionPreference, setMotionPreference } = useMotionPreference();
 
@@ -36,13 +22,22 @@ const AnimationSelect = () => {
         className={cn(styles.button, styles.svg)}
         onClick={() => setMotionPreference(resolvedMotionPreference === 'no-preference' ? 'reduce' : 'no-preference')}
       />
-      <CustomSelect
-        className={styles.select}
-        legend="Show animations?"
-        items={options}
-        defaultValue={resolvedMotionPreference}
-        updateFunction={setMotionPreference}
-      />
+      <CustomSelect className={styles.select} legend="Show animations?" defaultValue={resolvedMotionPreference} onChange={setMotionPreference}>
+        <CustomSelect.Option
+          id="animations-on"
+          name="animation-preference"
+          value="no-preference"
+          displayValue="Animations on"
+          optionSVG={<AnimationsSVG className={styles.svg} />}
+        />
+        <CustomSelect.Option
+          id="animations-off"
+          name="animation-preference"
+          value="reduce"
+          displayValue="Animations off"
+          optionSVG={<AnimationsSVG className={cn(styles.svg, styles.strikethrough)} />}
+        />
+      </CustomSelect>
     </>
   );
 };

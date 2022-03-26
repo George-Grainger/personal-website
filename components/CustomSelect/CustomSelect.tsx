@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import Option from './Option';
 import cn from 'classnames';
-import styles from './CustomSelect.module.css';
+import styles from './Select.module.css';
 
-interface Props {
+interface SelectProps {
   className: string;
   legend: string;
-  items: { id: string; value: string; displayValue: string; displaySVG: React.ReactNode }[];
   defaultValue: string | undefined;
-  updateFunction: (a: string) => void;
+  children: React.ReactNode;
+  onChange: (a: string) => void;
 }
 
-const CustomSelect = ({ className, legend, items, defaultValue, updateFunction }: Props) => {
+const Select = ({ className, legend, defaultValue, onChange, children }: SelectProps) => {
+  const getNewDisplayValue = (newValue: string | undefined) => {
+    return (React.Children.toArray(children) as JSX.Element[]).filter((c) => c.props.value == newValue)[0].props.displayValue;
+  };
+
+  const handleChange = (e: FormEvent<HTMLFieldSetElement>) => {
+    const newValue = (e.target as HTMLInputElement).value;
+    setDisplayValue(getNewDisplayValue(newValue));
+    onChange(newValue);
+  };
+
   const [optionsVisible, setOptionsVisible] = useState(false);
+  const [displayValue, setDisplayValue] = useState(getNewDisplayValue(defaultValue));
 
   return (
     <div
@@ -19,22 +31,16 @@ const CustomSelect = ({ className, legend, items, defaultValue, updateFunction }
       onBlur={(e) => !e.currentTarget.matches(':focus-within') && setOptionsVisible(false)}
     >
       <button arial-hidden="true" className={styles.title} onClick={() => setOptionsVisible(!optionsVisible)}>
-        {items.find((item) => item.value === defaultValue)?.displayValue || 'Select an option'}
+        {displayValue}
       </button>
-      <fieldset defaultValue={defaultValue} className={styles.select} onClick={() => setOptionsVisible(false)}>
+      <fieldset defaultValue={defaultValue} className={styles.select} onClick={() => setOptionsVisible(false)} onChange={handleChange}>
         <legend className="sr-only">{legend}</legend>
-        {items.map(({ id, value, displayValue, displaySVG }) => (
-          <React.Fragment key={id}>
-            <input className="sr-only" type="radio" id={id} name={id} value={value} onClick={(e) => updateFunction((e.target as HTMLInputElement).value)} />
-            <label className={styles.label} tabIndex={0} htmlFor={id}>
-              {displayValue}
-              {displaySVG}
-            </label>
-          </React.Fragment>
-        ))}
+        {children}
       </fieldset>
     </div>
   );
 };
 
-export default CustomSelect;
+Select.Option = Option;
+
+export default Select;
