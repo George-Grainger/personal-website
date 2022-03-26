@@ -1,16 +1,52 @@
 .nav {
   display: flex;
-  justify-content: center;
+  margin: auto;
+  justify-content: space-evenly;
   align-items: center;
   padding-top: 1.5rem;
-  gap: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   position: sticky;
 }
 
-.nav > li {
+.nav .link {
+  display: none;
+}
+
+.hamburger {
+  height: 2rem;
+  fill: var(--text);
+}
+
+.nav li {
   font-weight: 700;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (min-width: 30rem) {
+  .nav {
+    max-width: 30rem;
+  }
+}
+
+@media only screen and (min-width: 40rem) {
+  .nav {
+    max-width: 40rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 60rem) {
+  .nav {
+    max-width: 60rem;
+  }
+
+  .nav .link {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
 }

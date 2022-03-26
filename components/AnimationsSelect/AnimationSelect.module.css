@@ -18,7 +18,7 @@
   height: 3rem;
 }
 
-@media only screen and (min-width: 40em) {
+@media only screen and (min-width: 40rem) {
   .button {
     display: none;
   }
