@@ -90,11 +90,22 @@ select {
   --black: hsl(231, 23%, 12%);
   --black-hover: hsl(231, 23%, 27%);
   --sky-blue: hsl(212, 97%, 85%);
-  --yellow-light: hsl(52, 98%, 78%);
-  --yellow-darker: hsl(52, 98%, 48%);
-  --blue: hsl(213, 100%, 35%);
+  --yellow-1: hsl(52, 98%, 78%);
+  --yellow-2: hsl(52, 98%, 48%);
+  --blue: hsl(223, 100%, 33%);
   --red: hsl(349, 100%, 43%);
+  --green: hsl(118, 44%, 43%);
   --purple: hsl(259, 79%, 50%);
+
+  --cow-helmet: hsla(0, 0%, 67%, 0.2);
+  --cow-pink: hsl(9, 68%, 62%);
+  --cow-yellow: hsl(40, 62%, 58%);
+  --skin: hsl(29, 100%, 89%);
+  --grey-hc: hsl(226, 21%, 73%);
+  --grey-bc: hsl(226, 21%, 63%);
+  --grey-shadow: hsl(227, 11%, 75%);
+  --grey-mb: hsl(226, 21%, 88%);
+  --grey-dc: hsl(229, 12%, 82%);
 
   --background: var(--sky-blue);
   --text: var(--black);
@@ -113,8 +124,9 @@ select {
 }
 
 body {
+  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--text);
 }
 
 .sr-only {

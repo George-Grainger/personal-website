@@ -2,14 +2,13 @@
   font-style: italic;
   display: flex;
   gap: 0.75em;
-  width: fit-content;
   padding: 0.25em 1em;
   margin-inline: auto;
   background-color: var(--purple);
   color: var(--white);
   font-weight: 800;
-  font-size: 1.5rem;
   text-transform: uppercase;
+  text-decoration: none;
   transition: filter 500ms;
   transform: skewX(-15deg);
   filter: drop-shadow(0.15em 0.15em 0 var(--text));
@@ -20,7 +19,7 @@
 }
 
 .btn:hover {
-  filter: drop-shadow(0.25em 0.25em 0 var(--yellow-darker));
+  filter: drop-shadow(0.25em 0.25em 0 var(--yellow-2));
 }
 
 .btn span {
@@ -66,6 +65,6 @@
 
 @keyframes colour_anim {
   50% {
-    fill: var(--yellow-darker);
+    fill: var(--yellow-2);
   }
 }
